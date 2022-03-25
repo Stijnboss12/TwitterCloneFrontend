@@ -6,12 +6,12 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/about',
+    path: '/',
     name: 'about',
     component: () => import('../views/AboutView.vue')
   },
@@ -19,6 +19,12 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: () => import('../views/ProfileView.vue'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/externalapi',
+    name: 'externalapi',
+    component: () => import('../views/ExternalApiView.vue'),
     beforeEnter: authGuard
   },
 ]
