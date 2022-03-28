@@ -19,6 +19,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
               <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
+                  <a v-if="$auth.isAuthenticated" class="nav-link" href="/externalapi">ApiCall</a>
+                </li>
+                <li class="nav-item">
                   <a v-if="$auth.isAuthenticated" class="nav-link" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">
