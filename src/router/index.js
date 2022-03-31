@@ -6,12 +6,13 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'home',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('../views/HomeView.vue'),
+    beforeEnter: authGuard
   },
   {
-    path: '/',
+    path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue')
   },
