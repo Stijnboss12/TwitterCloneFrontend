@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="callApi">Call</button>
-    <h1>{{object}}</h1>
+    <h1 class="textwhite">{{object}}</h1>
   </div>
 </template>
 
