@@ -21,9 +21,9 @@
         const token = await this.$auth.getTokenSilently();
 
         // Use Axios to make a call to the API
-        this.object = await axios.get('https://localhost:7006/api/WeatherForecast', {
+        this.object = await axios.get('https://localhost:7006/api/Users/Login', {
           headers: {
-            Authorization: `Bearer ${token}` // send the access token through the 'Authorization' header
+            Authorization: `Bearer ${token}`
           }
         });
       }
