@@ -28,6 +28,12 @@ const routes = [
     component: () => import('../views/ExternalApiView.vue'),
     beforeEnter: authGuard
   },
+  {
+    path: '/redirect',
+    name: 'redirect',
+    component: () => import('../views/RedirectView.vue'),
+    beforeEnter: authGuard
+  },
 ]
 
 const router = new VueRouter({
