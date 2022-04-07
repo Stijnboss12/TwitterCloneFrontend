@@ -21,7 +21,7 @@
         const token = await this.$auth.getTokenSilently();
 
         // Use Axios to make a call to the API
-        this.object = await axios.get('https://localhost:7006/api/Users/Login', {
+        this.object = await axios.post('https://localhost:7006/api/Posts/New', { Content: "hallo"}, {
           headers: {
             Authorization: `Bearer ${token}`
           }
