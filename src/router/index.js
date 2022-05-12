@@ -8,7 +8,8 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('../views/HomeView.vue'),
+    beforeEnter: authGuard
   },
   {
     path: '/about',
@@ -19,6 +20,18 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: () => import('../views/ProfileView.vue'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/externalapi',
+    name: 'externalapi',
+    component: () => import('../views/ExternalApiView.vue'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/redirect',
+    name: 'redirect',
+    component: () => import('../views/RedirectView.vue'),
     beforeEnter: authGuard
   },
 ]
