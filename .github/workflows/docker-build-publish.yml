@@ -1,9 +1,6 @@
 name: Build & Publish TwitterCloneFrontend
 
 on:
-  # run it on push to the default repository branch
-  push:
-    branches: [master]
   # run it during pull request
   pull_request:
     branches: [master]
