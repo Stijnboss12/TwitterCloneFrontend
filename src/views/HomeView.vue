@@ -116,7 +116,7 @@ export default {
       const token = await this.$auth.getTokenSilently();
 
       axios
-        .get(`${process.env.VUE_APP_API_BASEURL}Users/${this.SearchContent}`, {
+        .get(`${process.env.VUE_APP_API_BASEURL}Users/ByUsername/${this.SearchContent}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
