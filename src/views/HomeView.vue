@@ -1,10 +1,13 @@
 <template>
   <div class="container-fluid text-white">
     <div class="row">
-      <div class="col">
-        <a class="navbar-brand text-white" href="/" style="font-size: 300%"
+      <div class="col m-md-2">
+        <a class="navbar-brand text-white row" href="/" style="font-size: 300%"
           >TwitterClone</a
         >
+        <button class="btn btn-outline-danger row" @click="GetError()">
+          Get Error
+        </button>
       </div>
       <div class="col-6">
         <form class="d-flex m-md-2 row" @submit.prevent="CreatePost">
@@ -116,11 +119,14 @@ export default {
       const token = await this.$auth.getTokenSilently();
 
       axios
-        .get(`${process.env.VUE_APP_API_BASEURL}Users/${this.SearchContent}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(
+          `${process.env.VUE_APP_API_BASEURL}Users/ByUsername/${this.SearchContent}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
           if (response.status == 200) {
             this.SearchResult = response.data;
@@ -143,6 +149,24 @@ export default {
       );
       // Reload the posts
       this.GetPosts();
+    },
+    async GetError() {
+      const token = await this.$auth.getTokenSilently();
+
+      axios
+        .get(
+          `${process.env.VUE_APP_API_BASEURL}Posts/ErrorEndpoint`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.status == 200) {
+            console.log(response.data)
+          }
+        });
     },
   },
 };
