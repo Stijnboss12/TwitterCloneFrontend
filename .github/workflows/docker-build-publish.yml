@@ -1,6 +1,8 @@
 name: Build & Publish TwitterCloneFrontend
 
 on:
+  push:
+    branches: [kubernetes]
   # run it during pull request
   pull_request:
     branches: [master]
