@@ -156,12 +156,7 @@ export default {
     async GetPostsError() {
       axios
         .get(
-          `${process.env.VUE_APP_API_BASEURL}Posts/ErrorEndpoint`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          `${process.env.VUE_APP_API_BASEURL}Posts/ErrorEndpoint`
         )
         .then((response) => {
           if (response.status == 200) {
@@ -173,12 +168,7 @@ export default {
         async GetUsersError() {
       axios
         .get(
-          `${process.env.VUE_APP_API_BASEURL}Users/ErrorEndpoint`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          `${process.env.VUE_APP_API_BASEURL}Users/ErrorEndpoint`
         )
         .then((response) => {
           if (response.status == 200) {
