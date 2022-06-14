@@ -5,8 +5,11 @@
         <a class="navbar-brand text-white row" href="/" style="font-size: 300%"
           >TwitterClone</a
         >
-        <button class="btn btn-outline-danger row" @click="GetError()">
-          Get Error
+        <button class="btn btn-outline-danger row" @click="GetPostsError()">
+          Get Error from PostMicroService
+        </button>
+        <button class="btn btn-outline-danger row" @click="GetUsersError()">
+          Get Error from UserMicroService
         </button>
       </div>
       <div class="col-6">
@@ -150,9 +153,7 @@ export default {
       // Reload the posts
       this.GetPosts();
     },
-    async GetError() {
-      const token = await this.$auth.getTokenSilently();
-
+    async GetPostsError() {
       axios
         .get(
           `${process.env.VUE_APP_API_BASEURL}Posts/ErrorEndpoint`,
@@ -164,6 +165,24 @@ export default {
         )
         .then((response) => {
           if (response.status == 200) {
+            this.Posts.push(response.data)
+            console.log(response.data)
+          }
+        });
+    },
+        async GetUsersError() {
+      axios
+        .get(
+          `${process.env.VUE_APP_API_BASEURL}Users/ErrorEndpoint`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.status == 200) {
+            this.Posts.push(response.data)
             console.log(response.data)
           }
         });
