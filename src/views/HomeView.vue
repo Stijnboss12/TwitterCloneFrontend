@@ -5,11 +5,23 @@
         <a class="navbar-brand text-white row" href="/" style="font-size: 300%"
           >TwitterClone</a
         >
-        <button class="btn btn-outline-danger row" @click="GetPostsError()">
+        <button
+          class="btn btn-outline-danger row mb-1"
+          @click="GetPostsError()"
+        >
           Get Error from PostMicroService
         </button>
-        <button class="btn btn-outline-danger row" @click="GetUsersError()">
+        <button
+          class="btn btn-outline-danger row mb-1"
+          @click="GetUsersError()"
+        >
           Get Error from UserMicroService
+        </button>
+        <button class="btn btn-outline-success row mb-1" @click="GetTestPost()">
+          Get test post from PostMicroService
+        </button>
+        <button class="btn btn-outline-success row mb-1" @click="GetTestUser()">
+          Get test user from UserMicroService
         </button>
       </div>
       <div class="col-6">
@@ -155,25 +167,41 @@ export default {
     },
     async GetPostsError() {
       axios
-        .get(
-          `${process.env.VUE_APP_API_BASEURL}Posts/ErrorEndpoint`
-        )
+        .get(`${process.env.VUE_APP_API_BASEURL}Posts/ErrorEndpoint`)
         .then((response) => {
           if (response.status == 200) {
-            this.Posts.push(response.data)
-            console.log(response.data)
+            this.Posts.push(response.data);
+            console.log(response.data);
           }
         });
     },
-        async GetUsersError() {
+    async GetUsersError() {
       axios
-        .get(
-          `${process.env.VUE_APP_API_BASEURL}Users/ErrorEndpoint`
-        )
+        .get(`${process.env.VUE_APP_API_BASEURL}Users/ErrorEndpoint`)
         .then((response) => {
           if (response.status == 200) {
-            this.Posts.push(response.data)
-            console.log(response.data)
+            this.Posts.push(response.data);
+            console.log(response.data);
+          }
+        });
+    },
+    async GetTestUser() {
+      axios
+        .get(`${process.env.VUE_APP_API_BASEURL}Users/TestUser`)
+        .then((response) => {
+          if (response.status == 200) {
+            this.SearchResult.push(response.data);
+            console.log(response.data);
+          }
+        });
+    },
+    async GetTestPost() {
+      axios
+        .get(`${process.env.VUE_APP_API_BASEURL}Posts/TestPost`)
+        .then((response) => {
+          if (response.status == 200) {
+            this.Posts.push(response.data);
+            console.log(response.data);
           }
         });
     },
