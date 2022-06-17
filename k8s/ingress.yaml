@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: twitterclone-frontend
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+    cert-manager.io/cluster-issuer: letsencrypt-http
+
+spec:
+  tls:
+    - secretName: minikube-internal-tls
+      hosts:
+        - minikube.internal
+  rules:
+  - host: minikube.internal
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: twitterclone-frontend
+            port:
+              number: 80
