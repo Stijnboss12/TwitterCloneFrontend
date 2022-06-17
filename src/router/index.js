@@ -9,7 +9,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: () => import('../views/HomeView.vue'),
-    beforeEnter: authGuard
   },
   {
     path: '/about',
@@ -26,7 +25,6 @@ const routes = [
     path: '/externalapi',
     name: 'externalapi',
     component: () => import('../views/ExternalApiView.vue'),
-    beforeEnter: authGuard
   },
   {
     path: '/redirect',

@@ -1,10 +1,28 @@
 <template>
   <div class="container-fluid text-white">
     <div class="row">
-      <div class="col">
-        <a class="navbar-brand text-white" href="/" style="font-size: 300%"
+      <div class="col m-md-2">
+        <a class="navbar-brand text-white row" href="/" style="font-size: 300%"
           >TwitterClone</a
         >
+        <button
+          class="btn btn-outline-danger row mb-1"
+          @click="GetPostsError()"
+        >
+          Get Error from PostMicroService
+        </button>
+        <button
+          class="btn btn-outline-danger row mb-1"
+          @click="GetUsersError()"
+        >
+          Get Error from UserMicroService
+        </button>
+        <button class="btn btn-outline-success row mb-1" @click="GetTestPost()">
+          Get test post from PostMicroService
+        </button>
+        <button class="btn btn-outline-success row mb-1" @click="GetTestUser()">
+          Get test user from UserMicroService
+        </button>
       </div>
       <div class="col-6">
         <form class="d-flex m-md-2 row" @submit.prevent="CreatePost">
@@ -116,11 +134,14 @@ export default {
       const token = await this.$auth.getTokenSilently();
 
       axios
-        .get(`${process.env.VUE_APP_API_BASEURL}Users/${this.SearchContent}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get(
+          `${process.env.VUE_APP_API_BASEURL}Users/ByUsername/${this.SearchContent}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
           if (response.status == 200) {
             this.SearchResult = response.data;
@@ -143,6 +164,46 @@ export default {
       );
       // Reload the posts
       this.GetPosts();
+    },
+    async GetPostsError() {
+      axios
+        .get(`${process.env.VUE_APP_API_BASEURL}Posts/ErrorEndpoint`)
+        .then((response) => {
+          if (response.status == 200) {
+            this.Posts.push(response.data);
+            console.log(response.data);
+          }
+        });
+    },
+    async GetUsersError() {
+      axios
+        .get(`${process.env.VUE_APP_API_BASEURL}Users/ErrorEndpoint`)
+        .then((response) => {
+          if (response.status == 200) {
+            this.Posts.push(response.data);
+            console.log(response.data);
+          }
+        });
+    },
+    async GetTestUser() {
+      axios
+        .get(`${process.env.VUE_APP_API_BASEURL}Users/TestUser`)
+        .then((response) => {
+          if (response.status == 200) {
+            this.SearchResult.push(response.data);
+            console.log(response.data);
+          }
+        });
+    },
+    async GetTestPost() {
+      axios
+        .get(`${process.env.VUE_APP_API_BASEURL}Posts/TestPost`)
+        .then((response) => {
+          if (response.status == 200) {
+            this.Posts.push(response.data);
+            console.log(response.data);
+          }
+        });
     },
   },
 };

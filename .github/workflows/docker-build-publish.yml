@@ -1,9 +1,11 @@
 name: Build & Publish TwitterCloneFrontend
 
 on:
+  push:
+    branches: [master]
   # run it during pull request
   pull_request:
-    branches: [master]
+    branches: []
 
 jobs:
   # define job to build and publish docker image
